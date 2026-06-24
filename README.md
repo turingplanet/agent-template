@@ -62,7 +62,7 @@ Later, run **`copier update`** in your repo to pull template improvements as a P
 
 ```bash
 git switch -c chore/template-sync
-copier update --defaults --trust --conflict inline   # 3-way merge to the latest template
+copier update --defaults --trust --conflict inline   # pull the latest template updates (keeps your code)
 git add -A && git commit -m "chore: sync to the latest agent-template"
 git push -u origin chore/template-sync
 gh pr create --fill        # your policies@vN gate runs on the sync PR
@@ -71,7 +71,7 @@ gh pr merge --squash --delete-branch
 git switch main && git pull   # back on main with the sync merged in
 ```
 
-Your `/api` + `/mcp` code is preserved; additive template changes land clean, genuine conflicts come out as git-style markers to resolve. (The [fleet migration bot](https://github.com/turingplanet/agent-registry) runs exactly this for you across all registered members whenever a new template ships — it opens the PR and never auto-merges.)
+**What `copier update` does:** it merges the template's updates into your repo *without* overwriting your work. Your own code (`/api`, `/mcp`, tests) stays intact; new files or settings the template added just appear. The only thing you ever resolve by hand is when you **and** the template edited the *same lines* — those spots show up marked with `<<<<<<<` for you to fix. (The [fleet migration bot](https://github.com/turingplanet/agent-registry) runs this for you across all registered members whenever a new template ships — it opens the PR and never auto-merges.)
 
 ## What's in the template (the `template/` subdirectory)
 - `api/`, `mcp/`, `tests/` — a runnable placeholder skeleton
