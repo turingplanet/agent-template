@@ -1,17 +1,25 @@
-# agent-template
+# agent-template — the starter kit
 
-The **scaffold** for 图灵星球 Agent 军团 member repos (Platform-owned, the COPY source). Holds only stable, declarative things: the manifest schema and a thin workflow pointer. Copied once into a new member repo at creation, then it **detaches** — updating this template does *not* update existing repos. Versioned by tag (`v1`, `v2`, …).
+> **Part of 图灵星球 Agent 军团.** New here? Start at the overview: **https://github.com/turingplanet/agent-legion**
 
-> **Part of 图灵星球 Agent 军团.** For the full picture — the three repos and how change flows between them — start at the overview: **https://github.com/turingplanet/agent-legion**
+This is the **starter kit** you copy to begin a new agent. It holds the contract (`manifest.schema.json`), a manifest to fill in, and a thin pointer to the shared review flow. You copy it **once** ("Use this template"); after that your repo is independent.
 
-## What's here
-- `manifest.schema.json` — the contract a member's `agent.manifest.yaml` must satisfy.
-- `agent.manifest.yaml` — the starter manifest (placeholders to fill in).
-- `.github/workflows/review.yml` — the thin pointer to the central review flow in `policies@vN`.
+## How to start your own agent
 
-## Greenfield onboarding
-1. Click **"Use this template" → Create a new repository** — this gives you a detached copy you own. It is **not** a fork.
-2. In your new repo, fill `/api` + `/mcp` and the manifest values.
-3. Open a pull request **inside your own repo** (feature branch → your `main`). That PR triggers the central review flow referenced from `policies@vN`, and the deterministic gate decides the merge.
+```mermaid
+flowchart TB
+    A["You want to build an agent"] --> B["Click 'Use this template' on agent-template<br/>(this is NOT a Fork)"]
+    B --> C["You get a brand-new repo YOU own:<br/>a detached copy, no link back to the template"]
+    C --> D["Write code in /api + /mcp,<br/>fill in agent.manifest.yaml"]
+    D --> E["Open a Pull Request INSIDE your repo<br/>(your branch → your main)"]
+    E --> F["The review flow runs<br/>(pulled live from policies@vN)"]
+    F --> G{"🚦 Gate: did the hard checks pass?"}
+    G -- "yes ✅" --> H["It merges into your main"]
+    G -- "no ❌" --> D
+```
 
-You never fork this repo or `policies` — you take a one-time copy of this template, and your workflow *references* `policies` by version. See the overview for the full picture.
+1. Click **"Use this template" → Create a new repository**. This is a detached copy you own — **not a Fork**.
+2. In your new repo, write your code in `/api` + `/mcp` and fill in `agent.manifest.yaml`.
+3. Open a pull request **inside your repo** (a branch → your `main`). That runs the review flow from `policies@vN`, and the gate decides whether it merges.
+
+You never fork this repo or `policies`. You copy this kit **once**, and your workflow *references* `policies` by version. See the overview for the full picture of how the three repos fit together.
