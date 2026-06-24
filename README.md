@@ -22,7 +22,7 @@ $ copier copy gh:turingplanet/agent-template ./my-agent
    An 图灵星球 Agent 军团 member agent.
 🎤 Your name / 🎤 Your email
    you / you@example.com
-Copying from template version v0.0.4
+Copying from template version v0.0.7
    create  .copier-answers.yml      ← records the template version
    create  agent.manifest.yaml
    create  api/server.py
@@ -39,7 +39,20 @@ git init && git add -A && git commit -m "Scaffold from agent-template"
 gh repo create my-agent --private --source . --push
 ```
 
-**4. Make it yours, then open a PR.** It's green out of the box, so you can confirm the pipeline works *before* changing anything. Then replace the placeholder `run()` in `/api`, expose it in `/mcp`, add real tests — and open a pull request. The review flow runs and the gate decides.
+**4. Confirm the pipeline is green (smoke test).** The scaffold passes review out of the box, so open a throwaway PR *first* — this proves the gate works before you write any real code. A one-line README edit is ideal: it triggers the flow but can't trip `tests`/`lint`/`security` (those run on `/api`).
+```bash
+git switch -c smoke-test
+printf '\n<!-- smoke-test: confirm the review pipeline is green -->\n' >> README.md
+git commit -am "chore: smoke-test the review pipeline"
+git push -u origin smoke-test
+gh pr create --fill        # opens the PR; the policies@vN gate runs automatically
+```
+The hard checks run (**install · tests · lint · security**) and the gate decides. If you've set an `ANTHROPIC_API_KEY` repo secret, the advisory AI review also posts a comment (with a token-usage + estimated-cost line) — it never blocks. Once it's green, clean up:
+```bash
+gh pr merge --squash --delete-branch     # or, to discard it: gh pr close --delete-branch
+```
+
+**5. Make it yours.** Replace the placeholder `run()` in `/api`, expose it in `/mcp`, add real tests — then open a pull request. The review flow runs and the gate decides.
 
 Later, run **`copier update`** in your repo to pull template improvements as a PR (your `.copier-answers.yml` is what makes that possible).
 
