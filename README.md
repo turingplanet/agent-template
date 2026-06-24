@@ -6,13 +6,42 @@ This is a **[Copier](https://copier.readthedocs.io) template** for creating a ne
 
 ## Create a new agent
 
+**1. Install Copier** (one-time):
 ```bash
-pipx install copier   # one-time (or: pip install copier)
-copier copy gh:turingplanet/agent-template ./my-agent
-cd my-agent && git init && git add -A && git commit -m "Scaffold from agent-template"
+pipx install copier      # or: pip install copier
 ```
 
-You'll be asked a few questions (name, description, author). The result is a **runnable python-mcp skeleton** that passes review out of the box — then replace the placeholder code in `/api` + `/mcp` with your logic and open a PR.
+**2. Scaffold your repo** — Copier asks a few questions, then writes the files:
+```text
+$ copier copy gh:turingplanet/agent-template ./my-agent
+🎤 Human-readable name of your agent
+   my-agent
+🎤 Package-style slug (lowercase, hyphens)
+   my-agent
+🎤 One-line description of your agent
+   An 图灵星球 Agent 军团 member agent.
+🎤 Your name / 🎤 Your email
+   you / you@example.com
+Copying from template version v4
+   create  .copier-answers.yml      ← records the template version
+   create  agent.manifest.yaml
+   create  api/server.py
+   create  mcp/server.py
+   create  tests/test_smoke.py
+   create  pyproject.toml
+   create  .github/workflows/review.yml
+```
+
+**3. Turn it into a repo you own and push it:**
+```bash
+cd my-agent
+git init && git add -A && git commit -m "Scaffold from agent-template"
+gh repo create my-agent --private --source . --push
+```
+
+**4. Make it yours, then open a PR.** It's green out of the box, so you can confirm the pipeline works *before* changing anything. Then replace the placeholder `run()` in `/api`, expose it in `/mcp`, add real tests — and open a pull request. The review flow runs and the gate decides.
+
+Later, run **`copier update`** in your repo to pull template improvements as a PR (your `.copier-answers.yml` is what makes that possible).
 
 ## Pull future template changes (in a generated repo)
 
