@@ -1,0 +1,31 @@
+# Copier template config — https://copier.readthedocs.io
+# Create a new agent:   copier copy gh:turingplanet/agent-template ./my-agent
+# Pull template updates: copier update      (run inside a generated repo)
+
+_subdirectory: template       # only files under template/ are generated
+_templates_suffix: ".jinja"   # only *.jinja files are rendered; everything else is copied verbatim
+
+project_name:
+  type: str
+  help: "Human-readable name of your agent"
+  default: "my-agent"
+
+project_slug:
+  type: str
+  help: "Package-style slug (lowercase, hyphens)"
+  default: "{{ project_name | lower | replace(' ', '-') | replace('_', '-') }}"
+
+description:
+  type: str
+  help: "One-line description of your agent"
+  default: "An 图灵星球 Agent 军团 member agent."
+
+author_name:
+  type: str
+  help: "Your name"
+  default: "you"
+
+author_email:
+  type: str
+  help: "Your email"
+  default: "you@example.com"
