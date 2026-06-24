@@ -10,4 +10,8 @@ The **scaffold** for 图灵星球 Agent 军团 member repos (Platform-owned, the
 - `.github/workflows/review.yml` — the thin pointer to the central review flow in `policies@vN`.
 
 ## Greenfield onboarding
-Copy this repo → fill `/api` + `/mcp` and the manifest values → open a PR. You're immediately on the standard rails, reviewed by the one standing agent.
+1. Click **"Use this template" → Create a new repository** — this gives you a detached copy you own. It is **not** a fork.
+2. In your new repo, fill `/api` + `/mcp` and the manifest values.
+3. Open a pull request **inside your own repo** (feature branch → your `main`). That PR triggers the central review flow referenced from `policies@vN`, and the deterministic gate decides the merge.
+
+You never fork this repo or `policies` — you take a one-time copy of this template, and your workflow *references* `policies` by version. See the overview for the full picture.
