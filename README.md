@@ -20,6 +20,6 @@ flowchart TB
 
 1. Click **"Use this template" → Create a new repository**. This is a detached copy you own — **not a Fork**.
 2. In your new repo, write your code in `/api` + `/mcp` and fill in `agent.manifest.yaml`.
-3. Open a pull request **inside your repo** (a branch → your `main`). That runs the review flow from `policies@vN`, and the gate decides whether it merges.
+3. Open a pull request **inside your repo** (a branch → your `main`). That runs the review flow from [`policies@vN`](https://github.com/turingplanet/policies), and the gate decides whether it merges.
 
 You never fork this repo or `policies`. You copy this kit **once**, and your workflow *references* `policies` by version. See the overview for the full picture of how the three repos fit together.
