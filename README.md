@@ -2,7 +2,7 @@
 
 > **Part of 图灵星球 Agent 军团.** New here? Start at the overview: **https://github.com/turingplanet/agent-legion**
 
-This is a **[Copier](https://copier.readthedocs.io) template** for creating a new agent. Unlike a plain "Use this template" copy, a Copier-scaffolded repo records which template version it came from (in `.copier-answers.yml`), so it can pull future template changes with **`copier update`**. That provenance is what lets the platform ship **safe, automated migration PRs** across the whole fleet.
+This is a **[Copier](https://copier.readthedocs.io) template** for creating a new agent. A Copier-scaffolded repo records which template version it came from (in `.copier-answers.yml`), so it can pull future template changes with **`copier update`**. That provenance is what lets the platform ship **safe, automated migration PRs** across the whole fleet.
 
 ## Create a new agent
 
