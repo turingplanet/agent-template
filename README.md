@@ -22,7 +22,7 @@ $ copier copy gh:turingplanet/agent-template ./my-agent
    An 图灵星球 Agent 军团 member agent.
 🎤 Your name / 🎤 Your email
    you / you@example.com
-Copying from template version v4
+Copying from template version v0.0.4
    create  .copier-answers.yml      ← records the template version
    create  agent.manifest.yaml
    create  api/server.py

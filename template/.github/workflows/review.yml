@@ -9,7 +9,7 @@ permissions:
   pull-requests: write   # lets the advisory review agent post a PR comment
 jobs:
   review:
-    uses: turingplanet/policies/.github/workflows/review-reusable.yml@v4
+    uses: turingplanet/policies/.github/workflows/review-reusable.yml@v0.0.4
     with:
       contract: v1
     secrets:
