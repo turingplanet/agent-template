@@ -1,0 +1,22 @@
+# THE ANCHOR — this file's name (agent.manifest.yaml) + location (repo root) are the one
+# hardcoded thing in the whole system. Every tool is guaranteed to find the manifest here.
+#
+# This copy is the STARTER that lands in a new member repo at creation (COPY path).
+# A contributor fills in the <values>; the shape is fixed by manifest.schema.json (copied alongside).
+
+apiVersion: v1              # contract version the gate enforces against
+profile: <profile>         # e.g. python-mcp — selects behavior from the platform-owned library
+
+toolchain:
+  language: <language>       # e.g. python
+  packageManager: <pm>       # pip | poetry | uv   (the field Scenario B flips)
+
+paths:
+  api: ./api                 # business logic       (the fields Scenario A flips)
+  mcp: ./mcp                 # MCP wrapper
+
+commands:                    # the workflow runs EXACTLY these — nothing toolchain-specific is hardcoded in CI
+  install: <install command>
+  test:    <test command>
+  lint:    <lint command>      # optional
+  security: <security command> # optional
