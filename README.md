@@ -39,6 +39,11 @@ git init && git add -A && git commit -m "Scaffold from agent-template"
 gh repo create my-agent --private --source . --push
 ```
 
+**(Optional) Enable the AI review.** The advisory reviewer stays **off** until you give it a key — without one the step skips gracefully (and fork PRs never receive it). To turn it on, add *your own* Anthropic API key as a repo secret (billed to your account):
+```bash
+gh secret set ANTHROPIC_API_KEY     # run inside your repo; paste the key when prompted
+```
+
 **4. Confirm the pipeline is green (smoke test).** The scaffold passes review out of the box, so open a throwaway PR *first* — this proves the gate works before you write any real code. A one-line README edit is ideal: it triggers the flow but can't trip `tests`/`lint`/`security` (those run on `/api`).
 ```bash
 git switch -c smoke-test
